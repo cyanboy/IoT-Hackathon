@@ -150,7 +150,8 @@ sensor.then(function(tag) {
   });
 });
 
-/*sensor.then(function(tag) {
+/*
+sensor.then(function(tag) {
   tag.on("luxometerChange", function(lux){
     lightLevel = lux
 
@@ -175,3 +176,4 @@ sensor.then(function(tag) {
       
   });
 });
+*/
