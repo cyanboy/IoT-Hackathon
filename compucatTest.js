@@ -75,18 +75,28 @@ var slowTime = 0
 var lightLevel = 0
 var wasShocked = 0
 var objectTempStat = 0
-var resurection = 0
+var isOn = false
 
 
 sensor.then(function(tag){
   tag.on("accelerometerChange", function(x,y,z){
 
     if(x > 1 || y > 1 || z > 1){
+
       var spawn = require('child_process').spawn
-      var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'on']);
-      ls.stdout.on('data', function (data) {
-          console.log(data);
-      });
+      if(!isOn){
+        var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'on']);
+        ls.stdout.on('data', function (data) {
+            console.log(data);
+        });
+        isOn=true
+      }else{
+        var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'off']);
+        ls.stdout.on('data', function (data) {
+            console.log(data);
+        });
+        isOn=false
+      }
     }
     log("Accelerometer: "+x+", "+y+", "+z)
   })
