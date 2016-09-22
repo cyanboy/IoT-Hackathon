@@ -11,6 +11,7 @@
     "url": "git+https://github.com/mehmandarov/sensortag-gettingstarted.git"
   },
   "dependencies": {
+    "mongoose": "^4.6.1",
     "sensortag": "1.2.2",
     "socket.io-client": "1.4.5"
   },
