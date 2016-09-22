@@ -41,7 +41,7 @@ var log = function(text) {
 var ADDRESS = "b0:b4:48:c9:74:80";
 var connected = new Promise((resolve, reject) => SensorTag.discoverByAddress(ADDRESS, (tag) => resolve(tag)))
   .then((tag) => new Promise((resolve, reject) => tag.connectAndSetup(() => resolve(tag))));
-var 
+
 log(" ")
 log("Press and hold both buttons on the SensorTag");
 log("Trying to connect...");
@@ -178,7 +178,7 @@ sensor.then(function(tag){
       }
 
       else if (slowTime > 1){
-        log("COMPUCAT: Relaxing")
+        log("COMPUCAT: Relaxing") 
         if(lightLevel > 20) slowTime = 2
       }
 
