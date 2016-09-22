@@ -81,7 +81,7 @@ var resurection = 0
 sensor.then(function(tag){
   tag.on("accelerometerChange", function(x,y,z){
 
-    if(x > 20 || y > 20 || z > 20){
+    if(x > 1 || y > 1 || z > 1){
       var spawn = require('child_process').spawn
       var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'on']);
       ls.stdout.on('data', function (data) {
