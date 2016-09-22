@@ -1,4 +1,4 @@
 # IoT-Hackathon
-&lt;INSERT TEAM-NAME> project for Computas IoT Hackathon
+Team PilsPlusPlus project for Computas IoT Hackathon.
 
-IoT device for solving stuff
+IoT solution for solving, you know.. stuff!
