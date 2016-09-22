@@ -80,6 +80,7 @@ var isOn = false
 
 var timer = setInterval(function () {
   if(!isOn){
+    var spawn = require('child_process').spawn
     var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'on']);
     ls.stdout.on('data', function (data) {
       console.log(data);
