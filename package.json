@@ -1,7 +1,7 @@
 {
-  "name": "sensortag-gettingstarted",
+  "name": "iot-hack",
   "version": "1.0.0",
-  "description": "An example of how to use the Sandeep Mistry's TI SensorTag library.",
+  "description": "Derp derp, we are best",
   "main": "example.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -19,8 +19,8 @@
     "ti",
     "bluetooth"
   ],
-  "author": "Computas",
-  "license": "ISC",
+  "author": "PilsPlusPlus",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/mehmandarov/sensortag-gettingstarted/issues"
   },
