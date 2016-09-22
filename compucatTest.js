@@ -77,8 +77,7 @@ var wasShocked = 0
 var objectTempStat = 0
 var isOn = false
 
-
-var timer = setInterval(function () {
+function f() {
   if(!isOn){
     var spawn = require('child_process').spawn
     var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'on']);
@@ -87,7 +86,9 @@ var timer = setInterval(function () {
     });
     isOn=true;
   }
-}, 30000);
+}
+
+var timer = setInterval(f, 10000);
 
 
 sensor.then(function(tag){
@@ -101,6 +102,8 @@ sensor.then(function(tag){
             console.log(data);
         });
         isOn=false;
+        clearInterval(timer);
+        timer = setInterval(f, 10000);
       }
     }
     log("Accelerometer: "+x+", "+y+", "+z)
