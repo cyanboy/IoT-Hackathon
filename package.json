@@ -1,0 +1,29 @@
+{
+  "name": "iot-hack",
+  "version": "1.0.0",
+  "description": "Derp derp, we are best",
+  "main": "example.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mehmandarov/sensortag-gettingstarted.git"
+  },
+  "dependencies": {
+    "mongoose": "^4.6.1",
+    "sensortag": "1.2.2",
+    "socket.io-client": "1.4.5"
+  },
+  "keywords": [
+    "sensortag",
+    "ti",
+    "bluetooth"
+  ],
+  "author": "PilsPlusPlus",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/mehmandarov/sensortag-gettingstarted/issues"
+  },
+  "homepage": "https://github.com/mehmandarov/sensortag-gettingstarted#readme"
+}
