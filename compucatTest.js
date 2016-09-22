@@ -32,7 +32,7 @@ var log = function(text) {
   }
   new Event({stuff: text}).save();
 }
-
+//whattt 
 //==============================================================================
 // Step 1: Connect to sensortag device.
 //------------------------------------------------------------------------------
@@ -75,9 +75,42 @@ var slowTime = 0
 var lightLevel = 0
 var wasShocked = 0
 var objectTempStat = 0
-var resurection = 0
+var isOn = false
 
-sensor.then(function(tag) {
+function f() {
+  if(!isOn){
+    var spawn = require('child_process').spawn
+    var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'on']);
+    ls.stdout.on('data', function (data) {
+      console.log(data);
+    });
+    isOn=true;
+  }
+}
+
+var timer = setInterval(f, 10000);
+
+
+sensor.then(function(tag){
+  tag.on("accelerometerChange", function(x,y,z){
+
+    if(x > 2 || y > 2 || z > 2){
+      if(isOn){
+        var spawn = require('child_process').spawn
+        var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'off']);
+        ls.stdout.on('data', function (data) {
+            console.log(data);
+        });
+        isOn=false;
+        clearInterval(timer);
+        timer = setInterval(f, 10000);
+      }
+    }
+    log("Accelerometer: "+x+", "+y+", "+z)
+  })
+});
+
+/*sensor.then(function(tag) {
   tag.on("gyroscopeChange", function(x, y, z){
     //log(x + "," + y + "," + z)
     if(wasShocked > 15){
@@ -149,7 +182,7 @@ sensor.then(function(tag) {
       }
 
       else if (slowTime > 1){
-        log("COMPUCAT: Relaxing")
+        log("COMPUCAT: Relaxing") 
         if(lightLevel > 20) slowTime = 2
       }
 
@@ -160,7 +193,7 @@ sensor.then(function(tag) {
   
   });
 });
-
+*/
 /*
 sensor.then(function(tag) {
   tag.on("luxometerChange", function(lux){
@@ -168,16 +201,15 @@ sensor.then(function(tag) {
 
   });
 });
-
-sensor.then(function(tag) {
+*/
+/*sensor.then(function(tag) {
   tag.on("irTemperatureChange", function(objectTemp, ambientTemp) {
     objectTempStat = objectTemp
-    if(objectTemp < 20) {
-      log("COMPUCAT: Brrrrr, I'm freezing. Can I get a hug?")
-    }
+    
+      log("Temperature is: "+objectTemp)
   })
 });
-
+/*
 sensor.then(function(tag) {
   tag.on("accelerometerChange", function(x,y,z){
     if(Math.abs(x) > 3.5 || Math.abs(y) > 3.5 || Math.abs(z) > 3.5) {
