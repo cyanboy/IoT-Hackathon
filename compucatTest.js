@@ -94,7 +94,7 @@ var timer = setInterval(f, 10000);
 sensor.then(function(tag){
   tag.on("accelerometerChange", function(x,y,z){
 
-    if(x > 1 || y > 1 || z > 1){
+    if(x > 2 || y > 2 || z > 2){
       if(isOn){
         var spawn = require('child_process').spawn
         var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'off']);
