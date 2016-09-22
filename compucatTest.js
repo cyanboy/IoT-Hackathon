@@ -79,13 +79,18 @@ var resurection = 0
 
 sensor.then(function(tag){
   tag.on("gyroscopeChange", function(x, y, z){
-    log(x+", "+y+", "+z)
+    log("Gyroscope: "+x+", "+y+", "+z)
   })
 });
 
 sensor.then(function(tag){
   tag.on("accelerometerChange", function(x,y,z){
-    log(x+", "+y+", "+z)
+    log("Accelerometer: "+x+", "+y+", "+z)
+  })
+});
+sensor.then(function(tag){
+  tag.on("irTemperatureChange: ", function(objectTemp, ambientTemp){
+    log("Temperature: "+objectTemp)
   })
 });
 /*sensor.then(function(tag) {
