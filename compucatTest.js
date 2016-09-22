@@ -15,11 +15,22 @@
       Step 4 (optional): Configure sensor update interval
 */
 var SensorTag = require('sensortag');
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/iot');
+
+var eventSchema = mongoose.Schema({
+    date: { type: Date, default: Date.now },
+    stuff: String
+});
+
+var Event = mongoose.model('Event', eventSchema);
 
 var log = function(text) {
   if(text) {
     console.log(text);
   }
+  new Event({stuff: text}).save();
 }
 
 //==============================================================================
