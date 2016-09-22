@@ -77,22 +77,21 @@ var wasShocked = 0
 var objectTempStat = 0
 var resurection = 0
 
-sensor.then(function(tag){
-  tag.on("gyroscopeChange", function(x, y, z){
-    log("Gyroscope: "+x+", "+y+", "+z)
-  })
-});
 
 sensor.then(function(tag){
   tag.on("accelerometerChange", function(x,y,z){
+
+    if(x > 20 || y > 20 || z > 20){
+      var spawn = require('child_process').spawn,
+      var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'on']);
+      ls.stdout.on('data', function (data) {
+          console.log(data);
+      });
+    }
     log("Accelerometer: "+x+", "+y+", "+z)
   })
 });
-sensor.then(function(tag){
-  tag.on("irTemperatureChange: ", function(objectTemp, ambientTemp){
-    log("Temperature: "+objectTemp)
-  })
-});
+
 /*sensor.then(function(tag) {
   tag.on("gyroscopeChange", function(x, y, z){
     //log(x + "," + y + "," + z)
