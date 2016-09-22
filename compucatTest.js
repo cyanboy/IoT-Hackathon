@@ -41,7 +41,7 @@ var log = function(text) {
 var ADDRESS = "b0:b4:48:c9:74:80";
 var connected = new Promise((resolve, reject) => SensorTag.discoverByAddress(ADDRESS, (tag) => resolve(tag)))
   .then((tag) => new Promise((resolve, reject) => tag.connectAndSetup(() => resolve(tag))));
-
+var 
 log(" ")
 log("Press and hold both buttons on the SensorTag");
 log("Trying to connect...");
@@ -78,24 +78,28 @@ var objectTempStat = 0
 var isOn = false
 
 
+var timer = setInterval(function () {
+  if(!isOn){
+    var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'on']);
+    ls.stdout.on('data', function (data) {
+      console.log(data);
+    });
+    isOn=true;
+  }
+}, 30000);
+
+
 sensor.then(function(tag){
   tag.on("accelerometerChange", function(x,y,z){
 
     if(x > 1 || y > 1 || z > 1){
-
-      var spawn = require('child_process').spawn
-      if(!isOn){
-        var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'on']);
-        ls.stdout.on('data', function (data) {
-            console.log(data);
-        });
-        isOn=true
-      }else{
+      if(isOn){
+        var spawn = require('child_process').spawn
         var ls  = spawn('python3', ['/home/pi/IoT-Hackathon/Z-Wave/light.py', 'off']);
         ls.stdout.on('data', function (data) {
             console.log(data);
         });
-        isOn=false
+        isOn=false;
       }
     }
     log("Accelerometer: "+x+", "+y+", "+z)
