@@ -73,10 +73,10 @@ sensor.then(function(tag){
 });
 
 sensor.then(function(tag){
-  tag.on("accelerometerChange", function(x,y,z)){
+  tag.on("accelerometerChange", function(x,y,z){
     log(x+", "+y+", "+z)
-  }
-})
+  })
+});
 /*sensor.then(function(tag) {
   tag.on("gyroscopeChange", function(x, y, z){
     //log(x + "," + y + "," + z)
