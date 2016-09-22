@@ -66,7 +66,18 @@ var wasShocked = 0
 var objectTempStat = 0
 var resurection = 0
 
-sensor.then(function(tag) {
+sensor.then(function(tag){
+  tag.on("gyroscopeChange", function(x, y, z){
+    log(x+", "+y+", "+z)
+  })
+});
+
+sensor.then(function(tag){
+  tag.on("accelerometerChange", function(x,y,z)){
+    log(x+", "+y+", "+z)
+  }
+})
+/*sensor.then(function(tag) {
   tag.on("gyroscopeChange", function(x, y, z){
     //log(x + "," + y + "," + z)
     if(wasShocked > 15){
@@ -149,7 +160,7 @@ sensor.then(function(tag) {
   
   });
 });
-
+*/
 /*
 sensor.then(function(tag) {
   tag.on("luxometerChange", function(lux){
@@ -157,16 +168,15 @@ sensor.then(function(tag) {
 
   });
 });
-
-sensor.then(function(tag) {
+*/
+/*sensor.then(function(tag) {
   tag.on("irTemperatureChange", function(objectTemp, ambientTemp) {
     objectTempStat = objectTemp
-    if(objectTemp < 20) {
-      log("COMPUCAT: Brrrrr, I'm freezing. Can I get a hug?")
-    }
+    
+      log("Temperature is: "+objectTemp)
   })
 });
-
+/*
 sensor.then(function(tag) {
   tag.on("accelerometerChange", function(x,y,z){
     if(Math.abs(x) > 3.5 || Math.abs(y) > 3.5 || Math.abs(z) > 3.5) {
